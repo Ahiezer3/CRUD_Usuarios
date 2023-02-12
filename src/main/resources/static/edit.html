@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Edición de usuario</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <script src="js/editUser.js"></script>
+
+    <style>
+        .centerImage {
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+          margin-top: 100px;
+          width: 50%;
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-primary">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="Index.html">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">Prueba técnica</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Tables -->
+            <li class="nav-item active">
+                <a class="nav-link" href="users.html">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Usuarios</span></a>
+            </li>
+
+            <!-- Nav Item - Tables -->
+            <li class="nav-item active">
+                <a class="nav-link" href="register.html">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Registrar usuario</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="About.html">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Más información</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="http://localhost:8080/swagger-ui/index.html">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Swagger</span></a>
+            </li>
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <div class="container">
+
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-5 d-none d-lg-block" >
+                                <img class="centerImage" id = "imageProfile" src="#" alt="Imagen de usuario" title="Imagen de usuario">
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">Editar usuario</h1>
+                                    </div>
+
+                                    <form id = "formEditeUser" class="user" method="POST" action="api/editUser" enctype="multipart/form-data">
+                                        <div>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control form-control-user" name = "idUser" id="idUser"
+                                                       placeholder="" required>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <input type="text" class="form-control form-control-user" name = "name" id="txtName"
+                                                    placeholder="Nombre" required>
+                                            </div>
+
+                                            <div>
+                                                <label for ="gender"> Género:
+                                                    <select name="gender" id="gender" class="form-control" width="60%">
+                                                        <option value="FEMALE">Femenino</option>
+                                                        <option value="MALE">Masculino</option>
+                                                    </select>
+                                                </label>
+                                            </div>
+
+                                            <div>
+                                                <label for = "statusSelector"> Estatus:
+                                                    <select name = "status" id="statusSelector" class="form-control" width="60%">
+                                                        <option value="ACTIVE">Activo</option>
+                                                        <option value="INACTIVE">Inactivo</option>
+                                                    </select>
+                                                </label>
+
+                                            </div>
+                                            <br>
+
+                                            <div class="form-group">
+                                                <div class="row" style ="margin-left:0rem;">
+                                                    <div width="40%">
+                                                         <input type="text" class="form-control form-control-user" name = "newEmail" id="newEmail"
+                                                             placeholder="Agregar nuevo email">
+                                                    </div>
+                                                    <div>&nbsp&nbsp&nbsp</div>
+                                                    <div width="20%">
+                                                        <button type="button" id="btnAddEmail" action ="#" class="form-control form-control btn btn-primary btn-add" title="Agregar email"> + </button>
+                                                    </div>
+                                                    <div>&nbsp&nbsp&nbsp</div>
+                                                    <div class="dropdown" width="100%">
+                                                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" title="Emails del usuario">Emails registrados
+                                                            <span class="caret"></span></button>
+                                                        <ul class="dropdown-menu" id = "email">
+                                                            <li>Sin emails</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control form-control-user" name = "emails" id="emails"
+                                                           placeholder="Emails">
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div width = "100%">
+                                                    <label for="file">Selecciona una imagen para cambiar la actual (Si no se selecciona una imagen se conservará la actual) </label>
+                                                </div>
+                                                <div width="100%">
+                                                <input type="file"
+                                                       id="file" name="file"
+                                                       accept="image/png, image/jpeg">
+                                                </div>
+                                            </div>
+
+                                            <br>
+                                            <button type="submit" id="btnRegisterUser"class="btn btn-primary btn-user btn-block" >Editar usuario</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

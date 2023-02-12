@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Tabla usuarios</title>
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this page -->
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/Users.js"></script>
+
+    <style>
+        .centerImage {
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+          margin-top: auto;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          border: 2px solid #637CEF;
+        }
+    </style>
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="Index.html">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">Prueba técnica</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Tables -->
+            <li class="nav-item active">
+                <a class="nav-link" href="users.html">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Usuarios</span></a>
+            </li>
+
+            <!-- Nav Item - Tables -->
+            <li class="nav-item active">
+                <a class="nav-link" href="register.html">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Registrar usuario</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="About.html">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Más información</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="http://localhost:8080/swagger-ui/index.html">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Swagger</span></a>
+            </li>
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Tabla de usuarios</h1>
+                    <p class="mb-4">Esta tabla muestra la información de cada uno de los usuarios existentes en la Base de Datos del proyecto.</p>
+
+                    <div width="100px">
+                        <button width="100px" type="submit" id="btnRegisterUser"class="btn btn-primary btn-user btn-block" >Crear usuario</button>
+                    </div>
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Tabla usuarios</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="usersTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Imagen</th>
+                                            <th>Id</th>
+                                            <th>Nombre</th>
+                                            <th>Email</th>
+                                            <th>Gender</th>
+                                            <th>Estatus</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td colspan = "6"><span>No se encontraron usuarios</span></td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="dataTables_paginate paging_simple_numbers" id="usersTable_paginate">
+                                <ul class="pagination">
+                                    <li>
+                                        <a href="#">Páginas&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>
+                                    </li>
+
+                                    <li class="paginate_button page-item previous active" id="usersTable_previous">
+                                        <a href="#" aria-controls="usersTable" data-dt-idx="0" tabindex="0" class="page-link">Anterior</a>
+                                     </li>
+                                    <li class="paginate_button page-item disable" id = "usersTable_currentPageText">
+                                        <a href="#" aria-controls="usersTable" data-dt-idx="1" tabindex="0" class="page-link"> Página: </a>
+                                    </li>
+                                    <li class="paginate_button page-item disable" id = "usersTable_currentPage">
+                                        <a href="#" aria-controls="usersTable" data-dt-idx="1" tabindex="0" class="page-link"> 0 </a>
+                                    </li>
+                                    <li class="paginate_button page-item disable" id = "usersTable_finallPageText">
+                                        <a href="#" aria-controls="usersTable" data-dt-idx="1" tabindex="0" class="page-link"> de: </a>
+                                    </li>
+                                    <li class="paginate_button page-item disable" id = "usersTable_finallPageVal">
+                                        <a href="#" aria-controls="usersTable" data-dt-idx="1" tabindex="0" class="page-link"> 0 </a>
+                                    </li>
+                                     <li class="paginate_button page-item next active" id="usersTable_next">
+                                         <a href="#" aria-controls="usersTable" data-dt-idx="2" tabindex="0" class="page-link">Siguiente</a>
+                                     </li>
+
+                                    <li id="usersTable_refresh">
+                                        <a href="#">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspRefrescar</a>
+                                    </li>
+                                 </ul>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Prueba técnica Liberty Finanzas - Abidan Carranza</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+</body>
+
+</html>
