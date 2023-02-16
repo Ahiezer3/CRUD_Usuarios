@@ -122,7 +122,7 @@ public class UserController {
             @RequestParam("emails") String emails,
             @RequestParam(value = "gender", required = true) String gender,
             @RequestParam(value = "status", required = true) String status,
-            @RequestParam(value = "file", required = false) MultipartFile file){
+            @RequestParam(value = "file", required = false) MultipartFile file) throws Exception {
 
         Response response = createUser(id, name, emails, gender, status, file);
 
@@ -131,9 +131,9 @@ public class UserController {
                 response.getEntity() != null ) {
             userDao.editUser((User) response.getEntity());
         }else {
-            return new RedirectView("/errorEdit.html");
+            return new RedirectView(ConstantsEnviroment.enviroment.getDescription()+"errorEdit.html");
         }
-        return new RedirectView("/successEdit.html");
+        return new RedirectView(ConstantsEnviroment.enviroment.getDescription()+"successEdit.html");
 
     }
     @ApiOperation(value = "Crear usuario."
@@ -148,7 +148,7 @@ public class UserController {
             @RequestParam("emails") String emails,
             @RequestParam(value = "gender", required = true) String gender,
             @RequestParam(value = "status", required = true) String status,
-            @RequestParam(value = "file", required = false) MultipartFile file){
+            @RequestParam(value = "file", required = false) MultipartFile file) throws Exception {
 
         Response response = createUser(null, name, emails, gender, status, file);
 
@@ -157,10 +157,12 @@ public class UserController {
                 response.getEntity() != null ) {
             userDao.addUser((User) response.getEntity());
         } else{
-            return new RedirectView("/errorRegister.html");
+
+            return new RedirectView(ConstantsEnviroment.enviroment.getDescription()+"errorRegister.html");
+
         }
 
-        return new RedirectView("/successRegister.html");
+        return new RedirectView(ConstantsEnviroment.enviroment.getDescription()+"successRegister.html");
 
     }
 
@@ -169,7 +171,7 @@ public class UserController {
                             String emails,
                             String gender,
                             String status,
-                            MultipartFile file){
+                            MultipartFile file) throws Exception {
 
         Response response = new Response();
         response.setSucced(true);
@@ -185,7 +187,7 @@ public class UserController {
         }
 
         if( file != null ) {
-            String pathProyect = new File(".").getAbsolutePath();
+            /*String pathProyect = new File(".").getAbsolutePath();
 
             int index = file.getOriginalFilename().indexOf(".");
             String extension = file.getOriginalFilename().substring(index + 1);
@@ -202,7 +204,8 @@ public class UserController {
                     newDirectory.mkdir();
                 }
 
-                Files.write(Path.of(absolutePath), file.getBytes());
+                Path pathSource = Paths.get(absolutePath);
+                Files.write(pathSource, file.getBytes());
                 user.setUrlImage(absolutePath);
                 user.setNameImage(namePicture);
 
@@ -213,13 +216,18 @@ public class UserController {
 
 
             } catch (Exception e) {
+
                 Response error = new Response();
                 error.setSucced(false);
                 error.setCode(ResponseCode.ERROR_UPLOAD.getCode());
                 error.setMessage(ResponseCode.ERROR_UPLOAD.getDescription());
 
                 return response;
-            }
+                throw new Exception(e);
+            }*/
+
+            String s = Base64.getEncoder().encodeToString(file.getBytes());
+            user.setBase64Image(s);
         }
 
         response.setEntity(user);

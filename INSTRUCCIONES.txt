@@ -1,0 +1,11 @@
+Para el correcto funcionamiento del proyecto, se requiere se sigan los siguientes pasos:
+
+1.- Crear y cargar información a la base de datos, se incluye el script para su creación y carga de datos de prueba, 
+el nombre del script es: "prueba_tecnica_users.sql" y se encuentra en la carpeta: "DBB_create_prueba_tecnica_Scripts" dentro
+de este proyecto.
+
+2.- La clase: "ConstantsEnviroment" que se encuentra en el directorio: "\Downloads\prueba_tecnica\src\main\java\com\prueba_tecnica\prueba_tecnica\models"
+tiene por defecto el valor asignado: "Enviroment.DEPLOY" el cual indica que el proyecto está configurado para ser desplegado y se ha generado
+el archivo WAR para su despliegue en Tomcat, si el proyecto sólo se requiere montar y ejecutar en un IDE específico para realizar pruebas o modificaciones,
+el valor de esta variable debe ser: "Enviroment.DEVELOP", realizar el cambio de valor según sea necesario.
+
